@@ -8,10 +8,9 @@ describe(`Basket Class`, () => {
         // this is before each it() runs.
       }) 
 
-
-    it("Initial basket should be empty", function() {
-        expect(basket.GetItems()).toEqual([]);
-    })
+      it("Initial basket should be empty", function() {
+          expect(basket.GetItems()).toEqual([]);
+      })
 
     //Adding Bagel tests
     it("Should add a Bagel in the basket", function(){
@@ -124,5 +123,21 @@ describe(`Basket Class`, () => {
         //verify
         expect(basket.GetItems()).toEqual(expectedBasket);
     })
+    
+      //creating basket tests
+      it("should create a new basket with standard capacity", function(){
+        let basketNormal = new Basket();
+        expect(basketNormal.GetSize()).toEqual(5);
+      })
+
+      it("should create a new basket with smaller capacity", function(){
+        let basketSmal = new Basket(3);
+        expect(basketSmal.GetSize()).toEqual(3);
+      })
+
+      it("should create a new basket with larger capacity", function(){
+        let basketSmal = new Basket(10);
+        expect(basketSmal.GetSize()).toEqual(10);
+      })
 }
 )

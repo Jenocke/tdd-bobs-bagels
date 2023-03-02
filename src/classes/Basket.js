@@ -14,9 +14,11 @@ class Basket{
     }
 
     AddBagel(bagelToAdd){
+        //checking if capacity allows adding an item
         let capacity = this.GetCurrentCapacity();
-        if(capacity == this.size)
+        if(capacity >= this.size)
             return false;
+
         const itemIndex = this.itemsArray.findIndex((item) => item.bagel.sku === bagelToAdd.sku)
         if(itemIndex == -1)
         {
@@ -48,6 +50,9 @@ class Basket{
         return this.itemsArray;
     }
 
+    GetSize(){
+        return this.size;
+    }
     
 }
 
