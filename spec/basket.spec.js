@@ -69,7 +69,7 @@ describe(`Basket Class`, () => {
         expect(expectedResult).toBe(false);
     })
 
-    fit("should remove bagel", function() {
+    it("should remove bagel", function() {
         //setup
         const bagel = new Bagel(`BGLO`, 0.49, `Bagel`, `Onion`);
         const bagel2 = new Bagel(`BGLE`, 0.49, `Bagel`, `Everything`);
@@ -82,7 +82,7 @@ describe(`Basket Class`, () => {
         //verify
         expect(basket.GetItems()).toEqual(expectedBasket);
     })
-    fit("should remove bagel -sku", function() {
+    it("should remove bagel -sku", function() {
         //setup
         const bagel = new Bagel(`BGLO`, 0.49, `Bagel`, `Onion`);
         const bagel2 = new Bagel(`BGLE`, 0.49, `Bagel`, `Everything`);
@@ -95,7 +95,7 @@ describe(`Basket Class`, () => {
         //verify
         expect(basket.GetItems()).toEqual(expectedBasket);
     })
-    fit("should decrease quantity", function() {
+    it("should decrease quantity", function() {
         //setup
         const bagel = new Bagel(`BGLO`, 0.49, `Bagel`, `Onion`);
         const bagel2 = new Bagel(`BGLE`, 0.49, `Bagel`, `Everything`);
@@ -108,7 +108,7 @@ describe(`Basket Class`, () => {
         //verify
         expect(basket.GetItems()).toEqual(expectedBasket);
     })
-    fit("should decrease quantity - sku", function() {
+    it("should decrease quantity - sku", function() {
         //setup
         const bagel = new Bagel(`BGLO`, 0.49, `Bagel`, `Onion`);
         const bagel2 = new Bagel(`BGLE`, 0.49, `Bagel`, `Everything`);
