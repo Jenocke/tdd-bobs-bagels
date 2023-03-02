@@ -22,7 +22,16 @@ class Basket{
     }
 
     RemoveBagel(bagel){
-        const itemIndex = this.itemsArray.findIndex((item) => item.bagel.sku === bagel.sku)
+        let itemIndex;
+        let test = typeof(bagel);
+        console.log(typeof(bagel));
+        if(test === "string")
+        {
+            console.log("test - string");
+            itemIndex = this.itemsArray.findIndex((item) => item.bagel.sku === bagel)
+        }
+        else
+            itemIndex = this.itemsArray.findIndex((item) => item.bagel.sku === bagel.sku)
         if(this.itemsArray[itemIndex].quantity <=1)
             this.itemsArray.splice(itemIndex, 1);
         else
