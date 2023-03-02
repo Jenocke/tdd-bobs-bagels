@@ -14,12 +14,19 @@ class Basket{
         {
             this.itemsArray[itemIndex].quantity ++;
         }
-        console.log(this.itemsArray);
         return true;
     }
 
     GetItems(){
         return this.itemsArray;
+    }
+
+    RemoveBagel(bagel){
+        const itemIndex = this.itemsArray.findIndex((item) => item.bagel.sku === bagel.sku)
+        if(this.itemsArray[itemIndex].quantity <=1)
+            this.itemsArray.splice(itemIndex, 1);
+        else
+            this.itemsArray[itemIndex].quantity --;
     }
 }
 
