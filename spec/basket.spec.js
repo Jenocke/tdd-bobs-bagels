@@ -32,11 +32,13 @@ describe(`Basket Class`, () => {
         const expectedBasket = [{bagel: bagel, quantity: 2}];
         basket.AddBagel(bagel);
         //execute
-        basket.AddBagel(bagel);
+        const expectedResult = basket.AddBagel(bagel);
         //verify
+        expect(expectedResult).toBeTrue();
         expect(basket.GetItems()).toEqual(expectedBasket);
     })
 
+    //capacity tests
     it("can't add more than size", function(){
         //setup
         const bagel = new Bagel(`BGLO`, 0.49, `Bagel`, `Onion`);
@@ -50,7 +52,7 @@ describe(`Basket Class`, () => {
         const expectedResult = basket.AddBagel(bagel);
         //verify
         expect(basket.GetItems()).toEqual(expectedBasket);
-        expect(expectedResult).toBe(false);
+        expect(expectedResult).toBeFalse();
     })
     it("can't add more than size - test2", function(){
         //setup
@@ -69,6 +71,7 @@ describe(`Basket Class`, () => {
         expect(expectedResult).toBe(false);
     })
 
+    //bagel removal tests
     it("should remove bagel", function() {
         //setup
         const bagel = new Bagel(`BGLO`, 0.49, `Bagel`, `Onion`);
