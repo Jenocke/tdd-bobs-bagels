@@ -7,8 +7,8 @@ class Basket{
 
     GetCurrentCapacity(){
         let capacity = 0;
-        this.itemsArray.forEach(element => {
-            capacity+=element.quantity;
+        this.itemsArray.forEach(item => {
+            capacity+=item.quantity;
         });
         return capacity;
     }
@@ -57,6 +57,14 @@ class Basket{
 
     GetSize(){
         return this.size;
+    }
+
+    GetTotalSum(){
+        let total = 0;
+        this.itemsArray.forEach(item => {
+            total += (item.quantity * item.bagel.getPrice());
+        })
+        return total;
     }
     
 }

@@ -3,9 +3,13 @@ const Bagel = require(`../src/classes/Bagel.js`);
 
 describe(`Basket Class`, () => {
     let basket;
+    let bagel;
+    let bagel2;
     beforeEach(() => {
         basket = new Basket(); // create a new basket container and save it into basket var
         // this is before each it() runs.
+        bagel = new Bagel(`BGLO`, 0.49, `Bagel`, `Onion`);
+        bagel2 = new Bagel(`BGLE`, 0.49, `Bagel`, `Everything`);
       }) 
 
       it("Initial basket should be empty", function() {
@@ -15,7 +19,6 @@ describe(`Basket Class`, () => {
     //Adding Bagel tests
     it("Should add a Bagel in the basket", function(){
         //setup
-        const bagel = new Bagel(`BGLO`, 0.49, `Bagel`, `Onion`);
         const expectedBasket = [{bagel: bagel, quantity: 1}];
         //execute
         const expectedResult = basket.AddBagel(bagel);
@@ -27,7 +30,6 @@ describe(`Basket Class`, () => {
 
     it("should increase quantity", function(){
         //setup
-        const bagel = new Bagel(`BGLO`, 0.49, `Bagel`, `Onion`);
         const expectedBasket = [{bagel: bagel, quantity: 2}];
         basket.AddBagel(bagel);
         //execute
@@ -40,8 +42,6 @@ describe(`Basket Class`, () => {
     //capacity tests
     it("can't add more than size", function(){
         //setup
-        const bagel = new Bagel(`BGLO`, 0.49, `Bagel`, `Onion`);
-        const bagel2 = new Bagel(`BGLE`, 0.49, `Bagel`, `Everything`);
         const expectedBasket = [{bagel: bagel, quantity: 3}, {bagel: bagel2, quantity: 2}];
         basket.AddBagel(bagel);
         basket.AddBagel(bagel);
@@ -58,8 +58,6 @@ describe(`Basket Class`, () => {
     //bagel removal tests
     it("should remove bagel", function() {
         //setup
-        const bagel = new Bagel(`BGLO`, 0.49, `Bagel`, `Onion`);
-        const bagel2 = new Bagel(`BGLE`, 0.49, `Bagel`, `Everything`);
         const expectedBasket = [{bagel: bagel, quantity: 2}];
         basket.AddBagel(bagel);        
         basket.AddBagel(bagel);
@@ -71,8 +69,6 @@ describe(`Basket Class`, () => {
     })
     it("should remove bagel -sku", function() {
         //setup
-        const bagel = new Bagel(`BGLO`, 0.49, `Bagel`, `Onion`);
-        const bagel2 = new Bagel(`BGLE`, 0.49, `Bagel`, `Everything`);
         const expectedBasket = [{bagel: bagel, quantity: 2}];
         basket.AddBagel(bagel);        
         basket.AddBagel(bagel);
@@ -84,8 +80,6 @@ describe(`Basket Class`, () => {
     })
     it("should decrease quantity", function() {
         //setup
-        const bagel = new Bagel(`BGLO`, 0.49, `Bagel`, `Onion`);
-        const bagel2 = new Bagel(`BGLE`, 0.49, `Bagel`, `Everything`);
         const expectedBasket = [{bagel: bagel, quantity: 1}, {bagel: bagel2, quantity: 1}];
         basket.AddBagel(bagel);        
         basket.AddBagel(bagel);
@@ -97,8 +91,6 @@ describe(`Basket Class`, () => {
     })
     it("should decrease quantity - sku", function() {
         //setup
-        const bagel = new Bagel(`BGLO`, 0.49, `Bagel`, `Onion`);
-        const bagel2 = new Bagel(`BGLE`, 0.49, `Bagel`, `Everything`);
         const expectedBasket = [{bagel: bagel, quantity: 1}, {bagel: bagel2, quantity: 1}];
         basket.AddBagel(bagel);        
         basket.AddBagel(bagel);
@@ -112,8 +104,7 @@ describe(`Basket Class`, () => {
     //Non-existing items removal tests
     it("should not remove non-existing bagel", function(){
         //setup
-        const bagel = new Bagel(`BGLE`, 0.49, `Bagel`, `Everything`);
-        basket.AddBagel(bagel);
+        basket.AddBagel(bagel2);
         //execute
         testResult = basket.RemoveBagel('BGLO');
         //verify
@@ -134,6 +125,19 @@ describe(`Basket Class`, () => {
       it("should create a new basket with larger capacity", function(){
         const basketLargerSize = new Basket(10);
         expect(basketLargerSize.GetSize()).toEqual(10);
+      })
+      
+      //totalSum tests
+      it("should return the total price", () =>{
+        //setup
+        const bagel3 = new Bagel(`COF`, 0.99, `Bagel`, ``);
+        basket.AddBagel(bagel);
+        basket.AddBagel(bagel);
+        basket.AddBagel(bagel3);
+        //execute
+        const testResult = basket.GetTotalSum();
+        //verify
+        expect(testResult).toEqual(1.97)
       })
 }
 )

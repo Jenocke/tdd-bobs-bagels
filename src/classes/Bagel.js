@@ -5,6 +5,11 @@ class Bagel{
         this.name = name;
         this.variant = variant;
     }
+
+    getPrice()
+    {
+        return this.price;
+    }
 }
 
 module.exports = Bagel;
