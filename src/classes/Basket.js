@@ -40,10 +40,15 @@ class Basket{
         }
         else
         itemIndex = this.itemsArray.findIndex((item) => item.bagel.sku === bagel.sku)
+        //item not found -> not in basket
+        if(itemIndex === -1)
+            return false;
         if(this.itemsArray[itemIndex].quantity <=1)
         this.itemsArray.splice(itemIndex, 1);
         else
         this.itemsArray[itemIndex].quantity --;
+
+        return true;
     }
     
     GetItems(){
